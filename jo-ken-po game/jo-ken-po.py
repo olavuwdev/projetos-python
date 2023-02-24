@@ -37,7 +37,7 @@ global pontos_computador
 
 pontos_voce = 0
 pontos_computador = 0
-rondas = 5
+rondas = 0
 
 #logica
 
@@ -46,7 +46,7 @@ def jogar(i):
     global pontos_voce
     global pontos_computador
 
-    if rondas > 0:
+    if rondas < 5:
         opcoes = ['Pedra', 'Tesoura', 'Papel']
         computador = random.choice(opcoes)
         voce = i
@@ -64,6 +64,7 @@ def jogar(i):
             l_linha['bg'] = verde
             l_linha_c['bg'] = cinza
             l_linha_e['bg'] = cinza
+
             pontos_voce += 10
         elif voce == 'Tesoura' and computador == 'Pedra':
             print('computador ganhou')   
@@ -100,7 +101,7 @@ def jogar(i):
         l_ponto_v['text'] = pontos_voce
         l_ponto_c['text'] = pontos_computador  
         #atualizando rondas
-        rondas -=1  
+        rondas += 1  
     else:
         l_ponto_v['text'] = pontos_voce
         l_ponto_c['text'] = pontos_computador 
@@ -153,7 +154,7 @@ def fim_do_jogo():
     #reiniciando os pontos e o jogo
     pontos_computador = 0
     pontos_voce = 0 
-    rondas = 5
+    rondas = 0
 
     #apagandp botoes de opçpes
     b_icon_1.destroy()
@@ -175,13 +176,13 @@ def fim_do_jogo():
         print('Empate') 
     else:
         print("Computador ganhou")
-        app_vencedor = Label(frame_baixo, text="NÃO FOI DESSA VEZ,\nAS MAQUINAS VENCERAM!", font=('Ivy 10 bold'),height=2, anchor="sw", fg=vermelho, bg=cinza)
+        app_vencedor = Label(frame_baixo, text="NÃO FOI DESSA VEZ,\nAS MAQUINAS VENCERAM!", font=('Ivy 10 bold'),height=2, anchor="sw", fg=amarelo, bg=cinza)
         app_vencedor.place(x=30, y=60)  
     print('Jogo terminou')
     opcao_computador['text'] = ""
-    l_linha['bg'] = azul
-    l_linha_e['bg'] = azul
-    l_linha_c['bg'] = azul
+    l_linha['bg'] = amarelo
+    l_linha_e['bg'] = amarelo
+    l_linha_c['bg'] = amarelo
     
     #função para jogar novamente
     def jogar_dnv():
@@ -195,6 +196,7 @@ def fim_do_jogo():
         iniciar_jogo()
     b_jogar_dnv = Button(frame_baixo, command=jogar_dnv , width=30,text="JOGAR", overrelief="ridge", bg=preto, fg=branco, font=("Ivy 10 bold"), anchor=CENTER, relief=RAISED)
     b_jogar_dnv.place(x=5, y=151)
+
 
 
 #Configurando os frames
@@ -233,7 +235,6 @@ l_linha_e.place(x=0,y=91)
 
 opcao_computador = Label(frame_baixo, text="", height=1, anchor="center", font=('Ivy 10 bold '), bg=cinza, fg=preto)
 opcao_computador.place(x=190, y=5)
-
 
  
 b_jogar = Button(frame_baixo, command=iniciar_jogo, width=30,text="JOGAR", overrelief="ridge", bg=preto, fg=branco, font=("Ivy 10 bold"), anchor=CENTER, relief=RAISED)
